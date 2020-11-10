@@ -9,7 +9,6 @@
   "license": "MIT",
   "type": "library",
   "require": {
-    "php": ">=7.0",
     "ext-curl": "*",
     "ext-json": "*",
     "psr/log":"^1.1",
