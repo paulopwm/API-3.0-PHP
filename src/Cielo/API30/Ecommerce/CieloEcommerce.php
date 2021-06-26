@@ -7,6 +7,8 @@ use Cielo\API30\Ecommerce\Request\QueryRecurrentPaymentRequest;
 use Cielo\API30\Ecommerce\Request\QuerySaleRequest;
 use Cielo\API30\Ecommerce\Request\TokenizeCardRequest;
 use Cielo\API30\Ecommerce\Request\UpdateSaleRequest;
+use Cielo\API30\Ecommerce\Request\BinQueryRequest;
+use Cielo\API30\Ecommerce\Request\ZeroAuthRequest;
 use Cielo\API30\Merchant;
 use Psr\Log\LoggerInterface;
 
@@ -175,5 +177,31 @@ class CieloEcommerce
         $tokenizeCardRequest = new TokenizeCardRequest($this->merchant, $this->environment, $this->logger);
 
         return $tokenizeCardRequest->execute($card);
+    }
+
+    /**
+     *  Consulta bin
+     *  @param $cardDigits
+     * 
+     *  @return BinQuery
+     */
+    public function binQuery($cardDigits)
+    {
+        $binQueryRequest = new BinQueryRequest($this->merchant, $this->environment, $this->logger);
+
+        return $binQueryRequest->execute($cardDigits);
+    }
+
+    /**
+     *  Consulta Zero Auth
+     *  @param CreditCard
+     * 
+     *  @return mixed
+     */
+    public function zeroAuth(CreditCard $creditCard) 
+    {
+        $zeroAuthRequest = new ZeroAuthRequest($this->merchant, $this->environment, $this->logger);
+
+        return $zeroAuthRequest->execute($creditCard);
     }
 }

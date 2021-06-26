@@ -11,6 +11,11 @@ use Cielo\API30\Ecommerce\CieloSerializable;
 */
 class Browser implements \JsonSerializable, CieloSerializable
 {
+    /**
+     *  @var string
+     */
+    private $browserFingerPrint;
+
     /** @var string $cookiesAccepted */
     private $cookiesAccepted;
 
@@ -48,11 +53,12 @@ class Browser implements \JsonSerializable, CieloSerializable
     */
     public function populate(\stdClass $data)
     {
-        $this->cookiesAccepted   = isset($data->CookiesAccepted) ? $data->CookiesAccepted : null;
-        $this->email             = isset($data->Email) ? $data->Email : null;
-        $this->hostName          = isset($data->HostName) ? $data->HostName : null;
-        $this->ipAddress         = isset($data->IpAddress) ? $data->IpAddress : null;
-        $this->type              = isset($data->Type) ? $data->Type : null;
+        $this->cookiesAccepted      = isset($data->CookiesAccepted) ? $data->CookiesAccepted : null;
+        $this->email                = isset($data->Email) ? $data->Email : null;
+        $this->browserFingerPrint   = isset($data->BrowserFingerPrint) ? $data->BrowserFingerPrint : null;
+        $this->hostName             = isset($data->HostName) ? $data->HostName : null;
+        $this->ipAddress            = isset($data->IpAddress) ? $data->IpAddress : null;
+        $this->type                 = isset($data->Type) ? $data->Type : null;
     }
 
     /**
@@ -73,6 +79,25 @@ class Browser implements \JsonSerializable, CieloSerializable
         $this->cookiesAccepted = $cookiesAccepted;
 
         return $this;
+    }
+
+    /**
+     *  @param $browserFingerprint
+     * 
+     *  @return $this
+     */
+    public function setBrowserFingerprint($browserFingerprint)
+    {
+        $this->browserFingerprint = $browserFingerprint;
+        return $this;
+    }
+
+    /**
+     *  @return mixed
+     */
+    public function getBrowserFingerprint()
+    {
+        return $this->browserFingerprint;
     }
 
     /**
