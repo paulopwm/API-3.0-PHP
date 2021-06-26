@@ -59,39 +59,6 @@ class FraudAnalysis implements \JsonSerializable, CieloSerializable
     /** @var string $replyData */
     private $replyData;
 
-    /** @var string $addressInfoCode */
-    private $addressInfoCode;
-
-    /** @var string $factorCode */
-    private $factorCode;
-
-    /** @var string $score */
-    private $score;
-
-    /** @var string $binCountry */
-    private $binCountry;
-
-    /** @var string $cardIssuer */
-    private $cardIssuer;
-
-    /** @var string $cardScheme */
-    private $cardScheme;
-
-    /** @var string $hostSeverity */
-    private $hostSeverity;
-
-    /** @var string $internetInfoCode */
-    private $internetInfoCode;
-
-    /** @var string $ipRoutingMethod */
-    private $ipRoutingMethod;
-
-    /** @var string $scoreModelUsed */
-    private $scoreModelUsed;
-
-    /** @var string $casePriority */
-    private $casePriority;
-
     /** @var string $id */
     private $id;
 
@@ -165,6 +132,43 @@ class FraudAnalysis implements \JsonSerializable, CieloSerializable
             $this->replyData->populate($data->ReplyData);
         }
     }
+
+    /**
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param string $id
+     * @return FraudAnalysis
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getFraudAnalysisReasonCode()
+    {
+        return $this->fraudAnalysisReasonCode;
+    }
+
+    /**
+     * @param int $fraudAnalysisReasonCode
+     * @return FraudAnalysis
+     */
+    public function setFraudAnalysisReasonCode($fraudAnalysisReasonCode)
+    {
+        $this->fraudAnalysisReasonCode = $fraudAnalysisReasonCode;
+        return $this;
+    }
+
 
     /**
      * @return mixed
