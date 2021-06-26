@@ -45,6 +45,9 @@ class ReplyData implements \JsonSerializable, CieloSerializable
     /** @var string $casePriority */
     private $casePriority;
 
+    /** @var string $casePriority */
+    private $providerTransactionId;
+
     /**
      * Travel constructor.
      *
@@ -78,6 +81,7 @@ class ReplyData implements \JsonSerializable, CieloSerializable
         $this->ipRoutingMethod   = isset($data->IpRoutingMethod) ? $data->IpRoutingMethod : null;
         $this->scoreModelUsed    = isset($data->ScoreModelUsed) ? $data->ScoreModelUsed : null;
         $this->casePriority      = isset($data->CasePriority) ? $data->CasePriority : null;
+        $this->providerTransactionId      = isset($data->ProviderTransactionId) ? $data->ProviderTransactionId : null;
     }
 
     /**
@@ -297,6 +301,24 @@ class ReplyData implements \JsonSerializable, CieloSerializable
     {
         $this->casePriority = $casePriority;
 
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getProviderTransactionId()
+    {
+        return $this->providerTransactionId;
+    }
+
+    /**
+     * @param string $providerTransactionId
+     * @return ReplyData
+     */
+    public function setProviderTransactionId($providerTransactionId)
+    {
+        $this->providerTransactionId = $providerTransactionId;
         return $this;
     }
 }
