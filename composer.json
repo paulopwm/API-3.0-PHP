@@ -4,18 +4,19 @@
       "Cielo": "src"
     }
   },
-  "name": "developercielo/api-3.0-php",
-  "description": "Integração com a API 3.0 da Cielo",
+  "name": "vintagewagen/api-3.0-php",
+  "description": "Fork da integração com a API 3.0 da Cielo",
   "license": "MIT",
   "type": "library",
   "require": {
     "php": ">=5.6",
     "ext-curl": "*",
     "ext-json": "*",
-    "psr/log":"^1.1"
+    "psr/log":"^1.1",
+    "ext-zlib": "*"
   },
   "suggest": {
     "monolog/monolog": "Allows more advanced logging of the application flow"
   },
-  "homepage": "https://github.com/DeveloperCielo/API-3.0-PHP"
+  "homepage": "https://github.com/vintagewagen/API-3.0-PHP"
 }
