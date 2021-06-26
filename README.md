@@ -29,7 +29,7 @@ Se já possui um arquivo `composer.json`, basta adicionar a seguinte dependênci
 
 ```json
 "require": {
-    "developercielo/api-3.0-php": "^1.0"
+    "paulopwm/api-3.0-php": "^1.0"
 }
 ```
 
@@ -42,7 +42,7 @@ composer install
 Alternativamente, você pode executar diretamente em seu terminal:
 
 ```
-composer require "developercielo/api-3.0-php"
+composer require "paulopwm/api-3.0-php"
 ```
 
 ## Produtos e Bandeiras suportadas e suas constantes
@@ -472,3 +472,15 @@ try {
 ## Manual
 
 Para mais informações sobre a integração com a API 3.0 da Cielo, vide o manual em: [Integração API 3.0](https://developercielo.github.io/manual/cielo-ecommerce)
+
+## Agradecimentos
+
+| Desenvolvedores  |
+|------------------|
+|@DeveloperCielo   |
+|@ruanbevilaqua    |
+|@abraaolevi       |
+|@herikLorencao    |
+|@lucasromanojf    |
+|@vintagewagen     |
+|@bruno-silva5     |

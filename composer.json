@@ -4,7 +4,7 @@
       "Cielo": "src"
     }
   },
-  "name": "vintagewagen/api-3.0-php",
+  "name": "paulopwm/api-3.0-php",
   "description": "Fork da integração com a API 3.0 da Cielo",
   "license": "MIT",
   "type": "library",
@@ -18,5 +18,5 @@
   "suggest": {
     "monolog/monolog": "Allows more advanced logging of the application flow"
   },
-  "homepage": "https://github.com/vintagewagen/API-3.0-PHP"
+  "homepage": "https://github.com/paulopwm/API-3.0-PHP"
 }
