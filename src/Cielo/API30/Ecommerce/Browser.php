@@ -82,13 +82,13 @@ class Browser implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     *  @param $browserFingerprint
-     * 
+     *  @param $browserFingerPrint
+     *
      *  @return $this
      */
-    public function setBrowserFingerprint($browserFingerprint)
+    public function setBrowserFingerprint($browserFingerPrint)
     {
-        $this->browserFingerprint = $browserFingerprint;
+        $this->browserFingerPrint = $browserFingerPrint;
         return $this;
     }
 
@@ -97,7 +97,7 @@ class Browser implements \JsonSerializable, CieloSerializable
      */
     public function getBrowserFingerprint()
     {
-        return $this->browserFingerprint;
+        return $this->browserFingerPrint;
     }
 
     /**

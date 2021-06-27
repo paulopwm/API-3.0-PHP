@@ -180,7 +180,7 @@ class ZeroAuth implements \JsonSerializable, CieloSerializable
         return $this;
     }
 
-    public function fromJson($json)
+    public static function fromJson($json)
     {
         $object = json_decode($json);
 
