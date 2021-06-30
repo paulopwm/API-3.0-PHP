@@ -20,7 +20,7 @@ class Merchant
      */
     public function __construct($id, $key)
     {
-        $this->id  = $id;
+        $this->id = $id;
         $this->key = $key;
     }
 

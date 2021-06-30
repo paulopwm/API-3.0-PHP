@@ -6,6 +6,7 @@ use Cielo\API30\Ecommerce\Sale;
 use Cielo\API30\Environment;
 use Cielo\API30\Merchant;
 use Psr\Log\LoggerInterface;
+use RuntimeException;
 
 /**
  * Class CreateSaleRequest
@@ -17,13 +18,13 @@ class CreateSaleRequest extends AbstractRequest
 
     private $environment;
 
-	/**
-	 * CreateSaleRequest constructor.
-	 *
-	 * @param Merchant $merchant
-	 * @param Environment $environment
-	 * @param LoggerInterface|null $logger
-	 */
+    /**
+     * CreateSaleRequest constructor.
+     *
+     * @param Merchant $merchant
+     * @param Environment $environment
+     * @param LoggerInterface|null $logger
+     */
     public function __construct(Merchant $merchant, Environment $environment, LoggerInterface $logger = null)
     {
         parent::__construct($merchant, $logger);
@@ -35,8 +36,8 @@ class CreateSaleRequest extends AbstractRequest
      * @param $sale
      *
      * @return null
-     * @throws \Cielo\API30\Ecommerce\Request\CieloRequestException
-     * @throws \RuntimeException
+     * @throws CieloRequestException
+     * @throws RuntimeException
      */
     public function execute($sale)
     {

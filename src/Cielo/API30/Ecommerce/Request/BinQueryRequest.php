@@ -6,6 +6,7 @@ use Cielo\API30\Ecommerce\BinQuery;
 use Cielo\API30\Environment;
 use Cielo\API30\Merchant;
 use Psr\Log\LoggerInterface;
+use RuntimeException;
 
 /**
  * Class BinQueryRequest
@@ -17,13 +18,13 @@ class BinQueryRequest extends AbstractRequest
 
     private $environment;
 
-	/**
-	 * BinQueryRequest constructor.
-	 *
-	 * @param Merchant $merchant
-	 * @param Environment $environment
-	 * @param LoggerInterface|null $logger
-	 */
+    /**
+     * BinQueryRequest constructor.
+     *
+     * @param Merchant $merchant
+     * @param Environment $environment
+     * @param LoggerInterface|null $logger
+     */
     public function __construct(Merchant $merchant, Environment $environment, LoggerInterface $logger = null)
     {
         parent::__construct($merchant, $logger);
@@ -35,12 +36,12 @@ class BinQueryRequest extends AbstractRequest
      * @param $cardDigits
      *
      * @return null
-     * @throws \Cielo\API30\Ecommerce\Request\CieloRequestException
-     * @throws \RuntimeException
+     * @throws CieloRequestException
+     * @throws RuntimeException
      */
     public function execute($cardDigits)
     {
-        $url = $this->environment->getApiQueryUrl() . '1/cardBin/'.$cardDigits;
+        $url = $this->environment->getApiQueryUrl() . '1/cardBin/' . $cardDigits;
 
         return $this->sendRequest('GET', $url);
     }

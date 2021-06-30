@@ -6,6 +6,7 @@ use Cielo\API30\Ecommerce\CreditCard;
 use Cielo\API30\Ecommerce\Environment;
 use Cielo\API30\Merchant;
 use Psr\Log\LoggerInterface;
+use RuntimeException;
 
 /**
  * Class CreateCardTokenRequestHandler
@@ -16,26 +17,26 @@ class TokenizeCardRequest extends AbstractRequest
 {
 
     private $environment;
-    /** @var Merchant $merchant */
-    private $merchant;
 
-	/**
-	 * CreateCardTokenRequestHandler constructor.
-	 *
-	 * @param Merchant $merchant
-	 * @param Environment $environment
-	 * @param LoggerInterface|null $logger
-	 */
+    /**
+     * CreateCardTokenRequestHandler constructor.
+     *
+     * @param Merchant $merchant
+     * @param Environment $environment
+     * @param LoggerInterface|null $logger
+     */
     public function __construct(Merchant $merchant, Environment $environment, LoggerInterface $logger = null)
     {
         parent::__construct($merchant, $logger);
-
-        $this->merchant    = $merchant;
         $this->environment = $environment;
     }
 
     /**
-     * @inheritdoc
+     * @param $param
+     *
+     * @return null
+     * @throws CieloRequestException
+     * @throws RuntimeException
      */
     public function execute($param)
     {
@@ -45,7 +46,9 @@ class TokenizeCardRequest extends AbstractRequest
     }
 
     /**
-     * @inheritdoc
+     * @param $json
+     *
+     * @return CreditCard
      */
     protected function unserialize($json)
     {

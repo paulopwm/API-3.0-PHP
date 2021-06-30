@@ -2,12 +2,14 @@
 
 namespace Cielo\API30\Ecommerce;
 
+use stdClass;
+
 /**
  * Class Sale
  *
  * @package Cielo\API30\Ecommerce
  */
-class Sale implements \JsonSerializable
+class Sale implements CieloSerializable
 {
 
     private $merchantOrderId;
@@ -33,7 +35,7 @@ class Sale implements \JsonSerializable
      */
     public static function fromJson($json)
     {
-        $object = json_decode($json) ?: json_decode(gzdecode($json));
+        $object = json_decode($json, false) ?: json_decode(gzdecode($json), false);
 
         $sale = new Sale();
         $sale->populate($object);
@@ -42,9 +44,9 @@ class Sale implements \JsonSerializable
     }
 
     /**
-     * @param \stdClass $data
+     * @param stdClass $data
      */
-    public function populate(\stdClass $data)
+    public function populate(stdClass $data)
     {
         $dataProps = get_object_vars($data);
 
@@ -148,8 +150,9 @@ class Sale implements \JsonSerializable
         return $this->payment;
     }
 
-    /*
-     *
+    /**
+     * @param Payment $payment
+     * @return $this
      */
     public function setPayment(Payment $payment)
     {

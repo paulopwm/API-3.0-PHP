@@ -2,12 +2,14 @@
 
 namespace Cielo\API30\Ecommerce;
 
+use stdClass;
+
 /**
  * Class CreditCard
  *
  * @package Cielo\API30\Ecommerce
  */
-class ExternalAuthentication implements \JsonSerializable, CieloSerializable
+class ExternalAuthentication implements CieloSerializable
 {
     /** @var string $cavv */
     private $cavv;
@@ -31,8 +33,8 @@ class ExternalAuthentication implements \JsonSerializable, CieloSerializable
      */
     public static function fromJson($json)
     {
-        $object = \json_decode($json);
-        $externalAuthentication = new ExternalAuthentication();
+        $object = json_decode($json, false);
+        $externalAuthentication = new self();
         $externalAuthentication->populate($object);
 
         return $externalAuthentication;
@@ -41,12 +43,12 @@ class ExternalAuthentication implements \JsonSerializable, CieloSerializable
     /**
      * @inheritdoc
      */
-    public function populate(\stdClass $data)
+    public function populate(stdClass $data)
     {
-        $this->cavv        = isset($data->Cavv)        ? $data->Cavv        : null;
-        $this->xid         = isset($data->Xid)         ? $data->Xid         : null;
-        $this->eci         = isset($data->Eci)         ? $data->Eci         : null;
-        $this->version     = isset($data->Version)     ? $data->Version     : null;
+        $this->cavv = isset($data->Cavv) ? $data->Cavv : null;
+        $this->xid = isset($data->Xid) ? $data->Xid : null;
+        $this->eci = isset($data->Eci) ? $data->Eci : null;
+        $this->version = isset($data->Version) ? $data->Version : null;
         $this->referenceId = isset($data->ReferenceId) ? $data->ReferenceId : null;
     }
 
@@ -61,7 +63,7 @@ class ExternalAuthentication implements \JsonSerializable, CieloSerializable
     /**
      * @return string
      */
-    public function getCavv(): string
+    public function getCavv()
     {
         return $this->cavv;
     }
@@ -69,7 +71,7 @@ class ExternalAuthentication implements \JsonSerializable, CieloSerializable
     /**
      * @param string $cavv
      */
-    public function setCavv(string $cavv): void
+    public function setCavv($cavv)
     {
         $this->cavv = $cavv;
     }
@@ -77,7 +79,7 @@ class ExternalAuthentication implements \JsonSerializable, CieloSerializable
     /**
      * @return string
      */
-    public function getXid(): string
+    public function getXid()
     {
         return $this->xid;
     }
@@ -85,7 +87,7 @@ class ExternalAuthentication implements \JsonSerializable, CieloSerializable
     /**
      * @param string $xid
      */
-    public function setXid(string $xid): void
+    public function setXid($xid)
     {
         $this->xid = $xid;
     }
@@ -93,7 +95,7 @@ class ExternalAuthentication implements \JsonSerializable, CieloSerializable
     /**
      * @return string
      */
-    public function getEci(): string
+    public function getEci()
     {
         return $this->eci;
     }
@@ -101,7 +103,7 @@ class ExternalAuthentication implements \JsonSerializable, CieloSerializable
     /**
      * @param string $eci
      */
-    public function setEci(string $eci): void
+    public function setEci($eci)
     {
         $this->eci = $eci;
     }
@@ -109,7 +111,7 @@ class ExternalAuthentication implements \JsonSerializable, CieloSerializable
     /**
      * @return string
      */
-    public function getVersion(): string
+    public function getVersion()
     {
         return $this->version;
     }
@@ -117,7 +119,7 @@ class ExternalAuthentication implements \JsonSerializable, CieloSerializable
     /**
      * @param string $version
      */
-    public function setVersion(string $version): void
+    public function setVersion($version)
     {
         $this->version = $version;
     }
@@ -125,7 +127,7 @@ class ExternalAuthentication implements \JsonSerializable, CieloSerializable
     /**
      * @return string
      */
-    public function getReferenceId(): string
+    public function getReferenceId()
     {
         return $this->referenceId;
     }
@@ -133,7 +135,7 @@ class ExternalAuthentication implements \JsonSerializable, CieloSerializable
     /**
      * @param string $referenceId
      */
-    public function setReferenceId(string $referenceId): void
+    public function setReferenceId($referenceId)
     {
         $this->referenceId = $referenceId;
     }

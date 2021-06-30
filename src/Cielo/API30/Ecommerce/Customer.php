@@ -7,7 +7,7 @@ namespace Cielo\API30\Ecommerce;
  *
  * @package Cielo\API30\Ecommerce
  */
-class Customer implements \JsonSerializable
+class Customer implements CieloSerializable
 {
 
     private $name;
@@ -47,11 +47,11 @@ class Customer implements \JsonSerializable
      */
     public function populate(\stdClass $data)
     {
-        $this->name      = isset($data->Name) ? $data->Name : null;
-        $this->email     = isset($data->Email) ? $data->Email : null;
+        $this->name = isset($data->Name) ? $data->Name : null;
+        $this->email = isset($data->Email) ? $data->Email : null;
         $this->birthDate = isset($data->Birthdate) ? $data->Birthdate : null;
 
-        $this->identity     = isset($data->Identity) ? $data->Identity : null;
+        $this->identity = isset($data->Identity) ? $data->Identity : null;
         $this->identityType = isset($data->IdentityType) ? $data->IdentityType : null;
 
         if (isset($data->Address)) {

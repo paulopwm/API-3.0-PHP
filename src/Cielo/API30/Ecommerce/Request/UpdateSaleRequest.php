@@ -6,6 +6,7 @@ use Cielo\API30\Ecommerce\Payment;
 use Cielo\API30\Environment;
 use Cielo\API30\Merchant;
 use Psr\Log\LoggerInterface;
+use RuntimeException;
 
 /**
  * Class UpdateSaleRequest
@@ -23,39 +24,39 @@ class UpdateSaleRequest extends AbstractRequest
 
     private $amount;
 
-	/**
-	 * UpdateSaleRequest constructor.
-	 *
-	 * @param Merchant $type
-	 * @param Merchant $merchant
-	 * @param Environment $environment
-	 * @param LoggerInterface|null $logger
-	 */
+    /**
+     * UpdateSaleRequest constructor.
+     *
+     * @param string $type
+     * @param Merchant $merchant
+     * @param Environment $environment
+     * @param LoggerInterface|null $logger
+     */
     public function __construct($type, Merchant $merchant, Environment $environment, LoggerInterface $logger = null)
     {
         parent::__construct($merchant, $logger);
 
         $this->environment = $environment;
-        $this->type        = $type;
+        $this->type = $type;
     }
 
     /**
      * @param $paymentId
      *
      * @return null
-     * @throws \Cielo\API30\Ecommerce\Request\CieloRequestException
-     * @throws \RuntimeException
+     * @throws CieloRequestException
+     * @throws RuntimeException
      */
     public function execute($paymentId)
     {
-        $url    = $this->environment->getApiUrl() . '1/sales/' . $paymentId . '/' . $this->type;
+        $url = $this->environment->getApiUrl() . '1/sales/' . $paymentId . '/' . $this->type;
         $params = [];
 
-        if ($this->amount != null) {
+        if (!is_null($this->amount)) {
             $params['amount'] = $this->amount;
         }
 
-        if ($this->serviceTaxAmount != null) {
+        if (!is_null($this->serviceTaxAmount)) {
             $params['serviceTaxAmount'] = $this->serviceTaxAmount;
         }
 

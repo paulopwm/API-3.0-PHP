@@ -2,14 +2,14 @@
 
 namespace Cielo\API30\Ecommerce;
 
-use Cielo\API30\Ecommerce\CieloSerializable;
+use stdClass;
 
 /**
  * Class ZeroAuth
  *
  * @package Cielo\API30\Ecommerce
  */
-class ZeroAuth implements \JsonSerializable, CieloSerializable
+class ZeroAuth implements CieloSerializable
 {
     /** @var string $valid */
     private $valid;
@@ -29,40 +29,41 @@ class ZeroAuth implements \JsonSerializable, CieloSerializable
     /** @var string $message */
     private $message;
 
+    public static function fromJson($json)
+    {
+        $object = json_decode($json, false);
+
+        $zeroAuth = new self();
+        $zeroAuth->populate($object);
+
+        return $zeroAuth;
+
+    }
 
     /**
-     * ZeroAuth constructor.
-     *
-     * @param null
-    */
-    public function __construct()
+     * @param stdClass $data
+     */
+    public function populate(stdClass $data)
     {
+        $this->valid = isset($data->Valid) ? $data->Valid : null;
+        $this->returnCode = isset($data->ReturnCode) ? $data->ReturnCode : null;
+        $this->returnMessage = isset($data->ReturnMessage) ? $data->ReturnMessage : null;
+        $this->issuerTransactionId = isset($data->IssuerTransactionId) ? $data->IssuerTransactionId : null;
+        $this->code = isset($data->Code) ? $data->Code : null;
+        $this->message = isset($data->Message) ? $data->Message : null;
     }
 
     /**
      * @return array
-    */
+     */
     public function jsonSerialize()
     {
         return get_object_vars($this);
     }
 
     /**
-     * @param \stdClass $data
-    */
-    public function populate(\stdClass $data)
-    {
-        $this->valid                     = isset($data->Valid) ? $data->Valid : null;
-        $this->returnCode                = isset($data->ReturnCode) ? $data->ReturnCode : null;
-        $this->returnMessage             = isset($data->ReturnMessage) ? $data->ReturnMessage : null;
-        $this->issuerTransactionId       = isset($data->IssuerTransactionId) ? $data->IssuerTransactionId : null;
-        $this->code                      = isset($data->Code) ? $data->Code : null;
-        $this->message                   = isset($data->Message) ? $data->Message : null;
-    }
-
-    /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getMessage()
     {
         return $this->message;
@@ -72,7 +73,7 @@ class ZeroAuth implements \JsonSerializable, CieloSerializable
      * @param $message
      *
      * @return $this
-    */
+     */
     public function setMessage($message)
     {
         $this->message = $message;
@@ -81,8 +82,8 @@ class ZeroAuth implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getCode()
     {
         return $this->code;
@@ -92,7 +93,7 @@ class ZeroAuth implements \JsonSerializable, CieloSerializable
      * @param $code
      *
      * @return $this
-    */
+     */
     public function setCode($code)
     {
         $this->code = $code;
@@ -101,8 +102,8 @@ class ZeroAuth implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getValid()
     {
         return $this->valid;
@@ -112,7 +113,7 @@ class ZeroAuth implements \JsonSerializable, CieloSerializable
      * @param $valid
      *
      * @return $this
-    */
+     */
     public function setValid($valid)
     {
         $this->valid = $valid;
@@ -121,8 +122,8 @@ class ZeroAuth implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getReturnCode()
     {
         return $this->returnCode;
@@ -132,8 +133,8 @@ class ZeroAuth implements \JsonSerializable, CieloSerializable
      * @param $returnCode
      *
      * @return $this
-    */
-    public function setReturnCode()
+     */
+    public function setReturnCode($returnCode)
     {
         $this->returnCode = $returnCode;
 
@@ -141,8 +142,8 @@ class ZeroAuth implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getReturnMessage()
     {
         return $this->returnMessage;
@@ -152,7 +153,7 @@ class ZeroAuth implements \JsonSerializable, CieloSerializable
      * @param $returnMessage
      *
      * @return $this
-    */
+     */
     public function setReturnMessage($returnMessage)
     {
         $this->returnMessage = $returnMessage;
@@ -161,8 +162,8 @@ class ZeroAuth implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getIssuerTransactionId()
     {
         return $this->issuerTransactionId;
@@ -172,22 +173,11 @@ class ZeroAuth implements \JsonSerializable, CieloSerializable
      * @param $issuerTransactionId
      *
      * @return $this
-    */
+     */
     public function setIssuerTransactionId($issuerTransactionId)
     {
         $this->issuerTransactionId = $issuerTransactionId;
 
         return $this;
-    }
-
-    public static function fromJson($json)
-    {
-        $object = json_decode($json);
-
-        $zeroAuth = new ZeroAuth();
-        $zeroAuth->populate($object);
-
-        return $zeroAuth;
-
     }
 }
