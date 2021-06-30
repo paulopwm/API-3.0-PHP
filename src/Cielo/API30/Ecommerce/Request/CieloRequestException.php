@@ -16,8 +16,8 @@ class CieloRequestException extends \Exception
      * CieloRequestException constructor.
      *
      * @param string $message
-     * @param int    $code
-     * @param null   $previous
+     * @param int $code
+     * @param null $previous
      */
     public function __construct($message, $code, $previous = null)
     {

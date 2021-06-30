@@ -2,6 +2,8 @@
 
 namespace Cielo\API30\Ecommerce;
 
+use stdClass;
+
 /**
  * Class Address
  *
@@ -35,18 +37,18 @@ class Address implements CieloSerializable
     }
 
     /**
-     * @param \stdClass $data
+     * @param stdClass $data
      */
-    public function populate(\stdClass $data)
+    public function populate(stdClass $data)
     {
-        $this->street     = isset($data->Street) ? $data->Street : null;
-        $this->number     = isset($data->Number) ? $data->Number : null;
+        $this->street = isset($data->Street) ? $data->Street : null;
+        $this->number = isset($data->Number) ? $data->Number : null;
         $this->complement = isset($data->Complement) ? $data->Complement : null;
-        $this->zipCode    = isset($data->ZipCode) ? $data->ZipCode : null;
-        $this->city       = isset($data->City) ? $data->City : null;
-        $this->state      = isset($data->State) ? $data->State : null;
-        $this->country    = isset($data->Country) ? $data->Country : null;
-        $this->district   = isset($data->District) ? $data->District : null;
+        $this->zipCode = isset($data->ZipCode) ? $data->ZipCode : null;
+        $this->city = isset($data->City) ? $data->City : null;
+        $this->state = isset($data->State) ? $data->State : null;
+        $this->country = isset($data->Country) ? $data->Country : null;
+        $this->district = isset($data->District) ? $data->District : null;
     }
 
     /**

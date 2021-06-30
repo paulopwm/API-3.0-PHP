@@ -2,15 +2,14 @@
 
 namespace Cielo\API30\Ecommerce;
 
-use Cielo\API30\Ecommerce\CieloSerializable;
-use Cielo\API30\Ecommerce\Legs;
+use stdClass;
 
 /**
  * Class Travel
  *
  * @package Cielo\API30\Ecommerce
  */
-class Travel implements \JsonSerializable, CieloSerializable
+class Travel implements CieloSerializable
 {
     /** @var string $departureTime */
     private $departureTime;
@@ -25,33 +24,24 @@ class Travel implements \JsonSerializable, CieloSerializable
     private $legs;
 
     /**
-     * Travel constructor.
-     *
-     * @param null
-    */
-    public function __construct()
-    {
-    }
-
-    /**
      * @return array
-    */
+     */
     public function jsonSerialize()
     {
         return get_object_vars($this);
     }
 
     /**
-     * @param \stdClass $data
-    */
-    public function populate(\stdClass $data)
+     * @param stdClass $data
+     */
+    public function populate(stdClass $data)
     {
-        $this->departureTime  = isset($data->DepartureTime) ? $data->DepartureTime : null;
-        $this->journeyType    = isset($data->JourneyType) ? $data->JourneyType : null;
-        $this->route          = isset($data->Route) ? $data->Route : null;
+        $this->departureTime = isset($data->DepartureTime) ? $data->DepartureTime : null;
+        $this->journeyType = isset($data->JourneyType) ? $data->JourneyType : null;
+        $this->route = isset($data->Route) ? $data->Route : null;
 
         if (isset($data->Legs)) {
-            foreach($data->Legs as $leg){
+            foreach ($data->Legs as $leg) {
                 $legsInstance = new Legs();
                 $legsInstance->populate($leg);
 
@@ -61,8 +51,8 @@ class Travel implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getDepartureTime()
     {
         return $this->departureTime;
@@ -72,7 +62,7 @@ class Travel implements \JsonSerializable, CieloSerializable
      * @param $departureTime
      *
      * @return $this
-    */
+     */
     public function setDepartureTime($departureTime)
     {
         $this->departureTime = $departureTime;
@@ -81,8 +71,8 @@ class Travel implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getJourneyType()
     {
         return $this->journeyType;
@@ -92,7 +82,7 @@ class Travel implements \JsonSerializable, CieloSerializable
      * @param $journeyType
      *
      * @return $this
-    */
+     */
     public function setJourneyType($journeyType)
     {
         $this->journeyType = $journeyType;
@@ -101,8 +91,8 @@ class Travel implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getRoute()
     {
         return $this->route;
@@ -112,7 +102,7 @@ class Travel implements \JsonSerializable, CieloSerializable
      * @param $route
      *
      * @return $this
-    */
+     */
     public function setRoute($route)
     {
         $this->route = $route;
@@ -121,8 +111,8 @@ class Travel implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getLegs()
     {
         return $this->legs;
@@ -132,7 +122,7 @@ class Travel implements \JsonSerializable, CieloSerializable
      * @param $legs
      *
      * @return $this
-    */
+     */
     public function setLegs($legs)
     {
         $this->legs = $legs;

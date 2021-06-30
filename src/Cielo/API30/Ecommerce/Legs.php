@@ -2,14 +2,14 @@
 
 namespace Cielo\API30\Ecommerce;
 
-use Cielo\API30\Ecommerce\CieloSerializable;
+use stdClass;
 
 /**
  * Class Legs
  *
  * @package Cielo\API30\Ecommerce
  */
-class Legs implements \JsonSerializable, CieloSerializable
+class Legs implements CieloSerializable
 {
     /** @var string $destination */
     private $destination;
@@ -18,34 +18,25 @@ class Legs implements \JsonSerializable, CieloSerializable
     private $origin;
 
     /**
-     * Legs constructor.
-     *
-     * @param null
-    */
-    public function __construct()
-    {
-    }
-
-    /**
      * @return array
-    */
+     */
     public function jsonSerialize()
     {
         return get_object_vars($this);
     }
 
     /**
-     * @param \stdClass $data
-    */
-    public function populate(\stdClass $data)
+     * @param stdClass $data
+     */
+    public function populate(stdClass $data)
     {
-        $this->destination  = isset($data->Destination) ? $data->Destination : null;
-        $this->origin       = isset($data->Origin) ? $data->Origin : null;
+        $this->destination = isset($data->Destination) ? $data->Destination : null;
+        $this->origin = isset($data->Origin) ? $data->Origin : null;
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getDestination()
     {
         return $this->destination;
@@ -55,7 +46,7 @@ class Legs implements \JsonSerializable, CieloSerializable
      * @param $destination
      *
      * @return $this
-    */
+     */
     public function setDestination($destination)
     {
         $this->destination = $destination;
@@ -64,8 +55,8 @@ class Legs implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getOrigin()
     {
         return $this->origin;
@@ -75,7 +66,7 @@ class Legs implements \JsonSerializable, CieloSerializable
      * @param $origin
      *
      * @return $this
-    */
+     */
     public function setOrigin($origin)
     {
         $this->origin = $origin;

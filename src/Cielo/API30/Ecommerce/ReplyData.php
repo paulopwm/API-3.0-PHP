@@ -2,15 +2,14 @@
 
 namespace Cielo\API30\Ecommerce;
 
-use Cielo\API30\Ecommerce\CieloSerializable;
-use Cielo\API30\Ecommerce\Legs;
+use stdClass;
 
 /**
  * Class ReplyData
  *
  * @package Cielo\API30\Ecommerce
  */
-class ReplyData implements \JsonSerializable, CieloSerializable
+class ReplyData implements CieloSerializable
 {
     /** @var string $addressInfoCode */
     private $addressInfoCode;
@@ -49,44 +48,35 @@ class ReplyData implements \JsonSerializable, CieloSerializable
     private $providerTransactionId;
 
     /**
-     * Travel constructor.
-     *
-     * @param null
-    */
-    public function __construct()
-    {
-    }
-
-    /**
      * @return array
-    */
+     */
     public function jsonSerialize()
     {
         return get_object_vars($this);
     }
 
     /**
-     * @param \stdClass $data
-    */
-    public function populate(\stdClass $data)
+     * @param stdClass $data
+     */
+    public function populate(stdClass $data)
     {
-        $this->addressInfoCode   = isset($data->AddressInfoCode) ? $data->AddressInfoCode : null;
-        $this->factorCode        = isset($data->FactorCode) ? $data->FactorCode : null;
-        $this->score             = isset($data->Score) ? $data->Score : null;
-        $this->binCountry        = isset($data->BinCountry) ? $data->BinCountry : null;
-        $this->cardIssuer        = isset($data->CardIssuer) ? $data->CardIssuer : null;
-        $this->cardScheme        = isset($data->CardScheme) ? $data->CardScheme : null;
-        $this->hostSeverity      = isset($data->HostSeverity) ? $data->HostSeverity : null;
-        $this->internetInfoCode  = isset($data->InternetInfoCode) ? $data->InternetInfoCode : null;
-        $this->ipRoutingMethod   = isset($data->IpRoutingMethod) ? $data->IpRoutingMethod : null;
-        $this->scoreModelUsed    = isset($data->ScoreModelUsed) ? $data->ScoreModelUsed : null;
-        $this->casePriority      = isset($data->CasePriority) ? $data->CasePriority : null;
-        $this->providerTransactionId      = isset($data->ProviderTransactionId) ? $data->ProviderTransactionId : null;
+        $this->addressInfoCode = isset($data->AddressInfoCode) ? $data->AddressInfoCode : null;
+        $this->factorCode = isset($data->FactorCode) ? $data->FactorCode : null;
+        $this->score = isset($data->Score) ? $data->Score : null;
+        $this->binCountry = isset($data->BinCountry) ? $data->BinCountry : null;
+        $this->cardIssuer = isset($data->CardIssuer) ? $data->CardIssuer : null;
+        $this->cardScheme = isset($data->CardScheme) ? $data->CardScheme : null;
+        $this->hostSeverity = isset($data->HostSeverity) ? $data->HostSeverity : null;
+        $this->internetInfoCode = isset($data->InternetInfoCode) ? $data->InternetInfoCode : null;
+        $this->ipRoutingMethod = isset($data->IpRoutingMethod) ? $data->IpRoutingMethod : null;
+        $this->scoreModelUsed = isset($data->ScoreModelUsed) ? $data->ScoreModelUsed : null;
+        $this->casePriority = isset($data->CasePriority) ? $data->CasePriority : null;
+        $this->providerTransactionId = isset($data->ProviderTransactionId) ? $data->ProviderTransactionId : null;
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getAddressInfoCode()
     {
         return $this->addressInfoCode;
@@ -96,7 +86,7 @@ class ReplyData implements \JsonSerializable, CieloSerializable
      * @param $addressInfoCode
      *
      * @return $this
-    */
+     */
     public function setAddressInfoCode($addressInfoCode)
     {
         $this->addressInfoCode = $addressInfoCode;
@@ -105,8 +95,8 @@ class ReplyData implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getFactorCode()
     {
         return $this->factorCode;
@@ -116,7 +106,7 @@ class ReplyData implements \JsonSerializable, CieloSerializable
      * @param $factorCode
      *
      * @return $this
-    */
+     */
     public function setFactorCode($factorCode)
     {
         $this->factorCode = $factorCode;
@@ -125,8 +115,8 @@ class ReplyData implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getScore()
     {
         return $this->score;
@@ -136,7 +126,7 @@ class ReplyData implements \JsonSerializable, CieloSerializable
      * @param $score
      *
      * @return $this
-    */
+     */
     public function setScore($score)
     {
         $this->score = $score;
@@ -145,8 +135,8 @@ class ReplyData implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getBinCountry()
     {
         return $this->binCountry;
@@ -156,7 +146,7 @@ class ReplyData implements \JsonSerializable, CieloSerializable
      * @param $binCountry
      *
      * @return $this
-    */
+     */
     public function setBinCountry($binCountry)
     {
         $this->binCountry = $binCountry;
@@ -165,8 +155,8 @@ class ReplyData implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getCardIssuer()
     {
         return $this->cardIssuer;
@@ -176,7 +166,7 @@ class ReplyData implements \JsonSerializable, CieloSerializable
      * @param $cardIssuer
      *
      * @return $this
-    */
+     */
     public function setCardIssuer($cardIssuer)
     {
         $this->cardIssuer = $cardIssuer;
@@ -185,8 +175,8 @@ class ReplyData implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getCardScheme()
     {
         return $this->cardScheme;
@@ -196,7 +186,7 @@ class ReplyData implements \JsonSerializable, CieloSerializable
      * @param $cardScheme
      *
      * @return $this
-    */
+     */
     public function setCardScheme($cardScheme)
     {
         $this->cardScheme = $cardScheme;
@@ -205,8 +195,8 @@ class ReplyData implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getHostSeverity()
     {
         return $this->hostSeverity;
@@ -216,7 +206,7 @@ class ReplyData implements \JsonSerializable, CieloSerializable
      * @param $hostSeverity
      *
      * @return $this
-    */
+     */
     public function setHostSeverity($hostSeverity)
     {
         $this->hostSeverity = $hostSeverity;
@@ -225,8 +215,8 @@ class ReplyData implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getInternetInfoCode()
     {
         return $this->internetInfoCode;
@@ -236,7 +226,7 @@ class ReplyData implements \JsonSerializable, CieloSerializable
      * @param $internetInfoCode
      *
      * @return $this
-    */
+     */
     public function setInternetInfoCode($internetInfoCode)
     {
         $this->internetInfoCode = $internetInfoCode;
@@ -245,8 +235,8 @@ class ReplyData implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getIpRoutingMethod()
     {
         return $this->ipRoutingMethod;
@@ -256,7 +246,7 @@ class ReplyData implements \JsonSerializable, CieloSerializable
      * @param $ipRoutingMethod
      *
      * @return $this
-    */
+     */
     public function setIpRoutingMethod($ipRoutingMethod)
     {
         $this->ipRoutingMethod = $ipRoutingMethod;
@@ -265,8 +255,8 @@ class ReplyData implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getScoreModelUsed()
     {
         return $this->scoreModelUsed;
@@ -276,7 +266,7 @@ class ReplyData implements \JsonSerializable, CieloSerializable
      * @param $scoreModelUsed
      *
      * @return $this
-    */
+     */
     public function setScoreModelUsed($scoreModelUsed)
     {
         $this->scoreModelUsed = $scoreModelUsed;
@@ -285,8 +275,8 @@ class ReplyData implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getCasePriority()
     {
         return $this->casePriority;
@@ -296,7 +286,7 @@ class ReplyData implements \JsonSerializable, CieloSerializable
      * @param $casePriority
      *
      * @return $this
-    */
+     */
     public function setCasePriority($casePriority)
     {
         $this->casePriority = $casePriority;

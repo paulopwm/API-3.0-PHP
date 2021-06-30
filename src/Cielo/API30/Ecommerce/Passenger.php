@@ -2,14 +2,14 @@
 
 namespace Cielo\API30\Ecommerce;
 
-use Cielo\API30\Ecommerce\CieloSerializable;
+use stdClass;
 
 /**
  * Class Passenger
  *
  * @package Cielo\API30\Ecommerce
  */
-class Passenger implements \JsonSerializable, CieloSerializable
+class Passenger implements CieloSerializable
 {
     /** @var string $email */
     private $email;
@@ -30,38 +30,29 @@ class Passenger implements \JsonSerializable, CieloSerializable
     private $status;
 
     /**
-     * Passenger constructor.
-     *
-     * @param null
-    */
-    public function __construct()
-    {
-    }
-
-    /**
      * @return array
-    */
+     */
     public function jsonSerialize()
     {
         return get_object_vars($this);
     }
 
     /**
-     * @param \stdClass $data
-    */
-    public function populate(\stdClass $data)
+     * @param stdClass $data
+     */
+    public function populate(stdClass $data)
     {
-        $this->email        = isset($data->Email) ? $data->Email : null;
-        $this->identity     = isset($data->Identity) ? $data->Identity : null;
-        $this->name         = isset($data->Name) ? $data->Name : null;
-        $this->rating       = isset($data->Rating) ? $data->Rating : null;
-        $this->phone        = isset($data->Phone) ? $data->Phone : null;
-        $this->status       = isset($data->Status) ? $data->Status : null;
+        $this->email = isset($data->Email) ? $data->Email : null;
+        $this->identity = isset($data->Identity) ? $data->Identity : null;
+        $this->name = isset($data->Name) ? $data->Name : null;
+        $this->rating = isset($data->Rating) ? $data->Rating : null;
+        $this->phone = isset($data->Phone) ? $data->Phone : null;
+        $this->status = isset($data->Status) ? $data->Status : null;
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getEmail()
     {
         return $this->email;
@@ -71,7 +62,7 @@ class Passenger implements \JsonSerializable, CieloSerializable
      * @param $email
      *
      * @return $this
-    */
+     */
     public function setEmail($email)
     {
         $this->email = $email;
@@ -80,8 +71,8 @@ class Passenger implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getIdentity()
     {
         return $this->identity;
@@ -91,7 +82,7 @@ class Passenger implements \JsonSerializable, CieloSerializable
      * @param $identity
      *
      * @return $this
-    */
+     */
     public function setIdentity($identity)
     {
         $this->identity = $identity;
@@ -100,8 +91,8 @@ class Passenger implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getName()
     {
         return $this->name;
@@ -111,7 +102,7 @@ class Passenger implements \JsonSerializable, CieloSerializable
      * @param $name
      *
      * @return $this
-    */
+     */
     public function setName($name)
     {
         $this->name = $name;
@@ -120,8 +111,8 @@ class Passenger implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getRating()
     {
         return $this->rating;
@@ -131,7 +122,7 @@ class Passenger implements \JsonSerializable, CieloSerializable
      * @param $rating
      *
      * @return $this
-    */
+     */
     public function setRating($rating)
     {
         $this->rating = $rating;
@@ -140,8 +131,8 @@ class Passenger implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getPhone()
     {
         return $this->phone;
@@ -151,7 +142,7 @@ class Passenger implements \JsonSerializable, CieloSerializable
      * @param $phone
      *
      * @return $this
-    */
+     */
     public function setPhone($phone)
     {
         $this->phone = $phone;
@@ -160,8 +151,8 @@ class Passenger implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getStatus()
     {
         return $this->status;
@@ -171,7 +162,7 @@ class Passenger implements \JsonSerializable, CieloSerializable
      * @param $status
      *
      * @return $this
-    */
+     */
     public function setStatus($status)
     {
         $this->status = $status;

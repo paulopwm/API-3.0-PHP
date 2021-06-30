@@ -2,12 +2,15 @@
 
 namespace Cielo\API30\Ecommerce;
 
+use stdClass;
+use function json_decode;
+
 /**
  * Class CreditCard
  *
  * @package Cielo\API30\Ecommerce
  */
-class CreditCard implements \JsonSerializable, CieloSerializable
+class CreditCard implements CieloSerializable
 {
     /**
      * Bandeira Visa
@@ -78,7 +81,7 @@ class CreditCard implements \JsonSerializable, CieloSerializable
     /** @var string $customerName */
     private $customerName;
 
-    /** @var \stdClass $links */
+    /** @var stdClass $links */
     private $links;
 
     /**
@@ -88,8 +91,8 @@ class CreditCard implements \JsonSerializable, CieloSerializable
      */
     public static function fromJson($json)
     {
-        $object    = \json_decode($json);
-        $cardToken = new CreditCard();
+        $object = json_decode($json, false);
+        $cardToken = new self();
         $cardToken->populate($object);
 
         return $cardToken;
@@ -98,17 +101,17 @@ class CreditCard implements \JsonSerializable, CieloSerializable
     /**
      * @inheritdoc
      */
-    public function populate(\stdClass $data)
+    public function populate(stdClass $data)
     {
-        $this->cardNumber     = isset($data->CardNumber) ? $data->CardNumber : null;
-        $this->holder         = isset($data->Holder) ? $data->Holder : null;
+        $this->cardNumber = isset($data->CardNumber) ? $data->CardNumber : null;
+        $this->holder = isset($data->Holder) ? $data->Holder : null;
         $this->expirationDate = isset($data->ExpirationDate) ? $data->ExpirationDate : null;
-        $this->securityCode   = isset($data->SecurityCode) ? $data->SecurityCode : null;
-        $this->saveCard       = isset($data->SaveCard) ? !!$data->SaveCard : false;
-        $this->brand          = isset($data->Brand) ? $data->Brand : null;
-        $this->cardToken      = isset($data->CardToken) ? $data->CardToken : null;
-        $this->links          = isset($data->Links) ? $data->Links : new \stdClass();
-        $this->customerName   = isset($data->CustomerName) ? $data->CustomerName : null;
+        $this->securityCode = isset($data->SecurityCode) ? $data->SecurityCode : null;
+        $this->saveCard = isset($data->SaveCard) ? !!$data->SaveCard : false;
+        $this->brand = isset($data->Brand) ? $data->Brand : null;
+        $this->cardToken = isset($data->CardToken) ? $data->CardToken : null;
+        $this->links = isset($data->Links) ? $data->Links : new stdClass();
+        $this->customerName = isset($data->CustomerName) ? $data->CustomerName : null;
     }
 
     /**
@@ -120,7 +123,7 @@ class CreditCard implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getCardNumber()
     {
@@ -140,7 +143,7 @@ class CreditCard implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getHolder()
     {
@@ -160,7 +163,7 @@ class CreditCard implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getExpirationDate()
     {
@@ -180,7 +183,7 @@ class CreditCard implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getSecurityCode()
     {
@@ -220,7 +223,7 @@ class CreditCard implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getBrand()
     {
@@ -240,7 +243,7 @@ class CreditCard implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getCardToken()
     {
@@ -278,7 +281,7 @@ class CreditCard implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return \stdClass
+     * @return stdClass
      */
     public function getLinks()
     {
@@ -286,7 +289,7 @@ class CreditCard implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @param \stdClass $links
+     * @param stdClass $links
      */
     public function setLinks($links)
     {

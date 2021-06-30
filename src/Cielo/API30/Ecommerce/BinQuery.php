@@ -2,14 +2,14 @@
 
 namespace Cielo\API30\Ecommerce;
 
-use Cielo\API30\Ecommerce\CieloSerializable;
-use Cielo\API30\Ecommerce\Items;
+use stdClass;
+
 /**
  * Class BinQuery
  *
  * @package Cielo\API30\Ecommerce
  */
-class BinQuery implements \JsonSerializable, CieloSerializable
+class BinQuery implements CieloSerializable
 {
     /** @var bool $isAccepted */
     private $isAccepted;
@@ -37,30 +37,30 @@ class BinQuery implements \JsonSerializable, CieloSerializable
 
     /**
      * @return array
-    */
+     */
     public function jsonSerialize()
     {
         return get_object_vars($this);
     }
 
     /**
-     * @param \stdClass $data
-    */
-    public function populate(\stdClass $data)
+     * @param stdClass $data
+     */
+    public function populate(stdClass $data)
     {
-        $this->isAccepted              = isset($data->Status) && $data->Status == '00' ? true : false;
-        $this->status                  = isset($data->Status) ? $data->Status : null;
-        $this->provider                = isset($data->Provider) ? $data->Provider : null;
-        $this->cardType                = isset($data->CardType) ? $data->CardType : null;
-        $this->foreignCard             = isset($data->ForeignCard) ? $data->ForeignCard : null;
-        $this->corporateCard           = isset($data->CorporateCard) ? $data->CorporateCard : null;
-        $this->issuer                  = isset($data->Issuer) ? $data->Issuer : null;
-        $this->issuerCode              = isset($data->IssuerCode) ? $data->IssuerCode : null;
+        $this->isAccepted = isset($data->Status) && $data->Status == '00' ? true : false;
+        $this->status = isset($data->Status) ? $data->Status : null;
+        $this->provider = isset($data->Provider) ? $data->Provider : null;
+        $this->cardType = isset($data->CardType) ? $data->CardType : null;
+        $this->foreignCard = isset($data->ForeignCard) ? $data->ForeignCard : null;
+        $this->corporateCard = isset($data->CorporateCard) ? $data->CorporateCard : null;
+        $this->issuer = isset($data->Issuer) ? $data->Issuer : null;
+        $this->issuerCode = isset($data->IssuerCode) ? $data->IssuerCode : null;
     }
 
     /**
-     * @return mixed
-    */
+     * @return bool
+     */
     public function getIsAccepted()
     {
         return $this->isAccepted;
@@ -70,7 +70,7 @@ class BinQuery implements \JsonSerializable, CieloSerializable
      * @param $isAccepted
      *
      * @return $this
-    */
+     */
     public function setIsAccepted($isAccepted)
     {
         $this->isAccepted = $isAccepted;
@@ -79,8 +79,8 @@ class BinQuery implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getStatus()
     {
         return $this->status;
@@ -90,7 +90,7 @@ class BinQuery implements \JsonSerializable, CieloSerializable
      * @param $status
      *
      * @return $this
-    */
+     */
     public function setStatus($status)
     {
         $this->status = $status;
@@ -99,8 +99,8 @@ class BinQuery implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getProvider()
     {
         return $this->provider;
@@ -110,7 +110,7 @@ class BinQuery implements \JsonSerializable, CieloSerializable
      * @param $provider
      *
      * @return $this
-    */
+     */
     public function setProvider($provider)
     {
         $this->provider = $provider;
@@ -119,8 +119,8 @@ class BinQuery implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getCardType()
     {
         return $this->cardType;
@@ -130,7 +130,7 @@ class BinQuery implements \JsonSerializable, CieloSerializable
      * @param $cardType
      *
      * @return $this
-    */
+     */
     public function setCardType($cardType)
     {
         $this->cardType = $cardType;
@@ -139,8 +139,8 @@ class BinQuery implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getForeignCard()
     {
         return $this->foreignCard;
@@ -150,7 +150,7 @@ class BinQuery implements \JsonSerializable, CieloSerializable
      * @param $foreignCard
      *
      * @return $this
-    */
+     */
     public function setForeignCard($foreignCard)
     {
         $this->foreignCard = $foreignCard;
@@ -159,8 +159,8 @@ class BinQuery implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getCorporateCard()
     {
         return $this->corporateCard;
@@ -170,7 +170,7 @@ class BinQuery implements \JsonSerializable, CieloSerializable
      * @param $corporateCard
      *
      * @return $this
-    */
+     */
     public function setCorporateCard($corporateCard)
     {
         $this->corporateCard = $corporateCard;
@@ -179,8 +179,8 @@ class BinQuery implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getIssuer()
     {
         return $this->issuer;
@@ -190,7 +190,7 @@ class BinQuery implements \JsonSerializable, CieloSerializable
      * @param $issuer
      *
      * @return $this
-    */
+     */
     public function setIssuer($issuer)
     {
         $this->issuer = $issuer;
@@ -199,8 +199,8 @@ class BinQuery implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getIssuerCode()
     {
         return $this->issuerCode;
@@ -210,7 +210,7 @@ class BinQuery implements \JsonSerializable, CieloSerializable
      * @param $issuerCode
      *
      * @return $this
-    */
+     */
     public function setIssuerCode($issuerCode)
     {
         $this->issuerCode = $issuerCode;
@@ -225,9 +225,9 @@ class BinQuery implements \JsonSerializable, CieloSerializable
      */
     public static function fromJson($json)
     {
-        $object = json_decode($json);
+        $object = json_decode($json, false);
 
-        $binQuery = new BinQuery();
+        $binQuery = new self();
         $binQuery->populate($object);
 
         return $binQuery;

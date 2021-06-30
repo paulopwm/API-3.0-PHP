@@ -2,12 +2,14 @@
 
 namespace Cielo\API30\Ecommerce;
 
+use stdClass;
+
 /**
  * Class Payment
  *
  * @package Cielo\API30\Ecommerce
  */
-class Payment implements \JsonSerializable
+class Payment implements CieloSerializable
 {
 
     const PAYMENTTYPE_CREDITCARD = 'CreditCard';
@@ -111,6 +113,7 @@ class Payment implements \JsonSerializable
     private $instructions;
 
     private $fraudAnalysis;
+
     /**
      * Payment constructor.
      *
@@ -131,23 +134,23 @@ class Payment implements \JsonSerializable
     public static function fromJson($json)
     {
         $payment = new Payment();
-        $payment->populate(json_decode($json));
+        $payment->populate(json_decode($json, false));
 
         return $payment;
     }
 
     /**
-     * @param \stdClass $data
+     * @param stdClass $data
      */
-    public function populate(\stdClass $data)
+    public function populate(stdClass $data)
     {
 
         $this->serviceTaxAmount = isset($data->ServiceTaxAmount) ? $data->ServiceTaxAmount : null;
-        $this->installments     = isset($data->Installments) ? $data->Installments : null;
-        $this->interest         = isset($data->Interest) ? $data->Interest : null;
-        $this->capture          = isset($data->Capture) ? !!$data->Capture : false;
-        $this->authenticate     = isset($data->Authenticate) ? !!$data->Authenticate : false;
-        $this->recurrent        = isset($data->Recurrent) ? !!$data->Recurrent : false;
+        $this->installments = isset($data->Installments) ? $data->Installments : null;
+        $this->interest = isset($data->Interest) ? $data->Interest : null;
+        $this->capture = isset($data->Capture) ? !!$data->Capture : false;
+        $this->authenticate = isset($data->Authenticate) ? !!$data->Authenticate : false;
+        $this->recurrent = isset($data->Recurrent) ? !!$data->Recurrent : false;
 
         if (isset($data->RecurrentPayment)) {
             $this->recurrentPayment = new RecurrentPayment(false);
@@ -175,38 +178,38 @@ class Payment implements \JsonSerializable
         }
 
         $this->expirationDate = isset($data->ExpirationDate) ? $data->ExpirationDate : null;
-        $this->url            = isset($data->Url) ? $data->Url : null;
-        $this->boletoNumber   = isset($data->BoletoNumber) ? $data->BoletoNumber : null;
-        $this->barCodeNumber  = isset($data->BarCodeNumber) ? $data->BarCodeNumber : null;
-        $this->digitableLine  = isset($data->DigitableLine) ? $data->DigitableLine : null;
-        $this->address        = isset($data->Address) ? $data->Address : null;
+        $this->url = isset($data->Url) ? $data->Url : null;
+        $this->boletoNumber = isset($data->BoletoNumber) ? $data->BoletoNumber : null;
+        $this->barCodeNumber = isset($data->BarCodeNumber) ? $data->BarCodeNumber : null;
+        $this->digitableLine = isset($data->DigitableLine) ? $data->DigitableLine : null;
+        $this->address = isset($data->Address) ? $data->Address : null;
 
         $this->authenticationUrl = isset($data->AuthenticationUrl) ? $data->AuthenticationUrl : null;
-        $this->tid               = isset($data->Tid) ? $data->Tid : null;
-        $this->proofOfSale       = isset($data->ProofOfSale) ? $data->ProofOfSale : null;
+        $this->tid = isset($data->Tid) ? $data->Tid : null;
+        $this->proofOfSale = isset($data->ProofOfSale) ? $data->ProofOfSale : null;
         $this->authorizationCode = isset($data->AuthorizationCode) ? $data->AuthorizationCode : null;
-        $this->softDescriptor    = isset($data->SoftDescriptor) ? $data->SoftDescriptor : null;
-        $this->provider          = isset($data->Provider) ? $data->Provider : null;
-        $this->paymentId         = isset($data->PaymentId) ? $data->PaymentId : null;
-        $this->type              = isset($data->Type) ? $data->Type : null;
-        $this->amount            = isset($data->Amount) ? $data->Amount : null;
-        $this->receivedDate      = isset($data->ReceivedDate) ? $data->ReceivedDate : null;
-        $this->capturedAmount    = isset($data->CapturedAmount) ? $data->CapturedAmount : null;
-        $this->capturedDate      = isset($data->CapturedDate) ? $data->CapturedDate : null;
-        $this->voidedAmount      = isset($data->VoidedAmount) ? $data->VoidedAmount : null;
-        $this->voidedDate        = isset($data->VoidedDate) ? $data->VoidedDate : null;
-        $this->currency          = isset($data->Currency) ? $data->Currency : null;
-        $this->country           = isset($data->Country) ? $data->Country : null;
-        $this->returnCode        = isset($data->ReturnCode) ? $data->ReturnCode : null;
-        $this->returnMessage     = isset($data->ReturnMessage) ? $data->ReturnMessage : null;
-        $this->status            = isset($data->Status) ? $data->Status : null;
+        $this->softDescriptor = isset($data->SoftDescriptor) ? $data->SoftDescriptor : null;
+        $this->provider = isset($data->Provider) ? $data->Provider : null;
+        $this->paymentId = isset($data->PaymentId) ? $data->PaymentId : null;
+        $this->type = isset($data->Type) ? $data->Type : null;
+        $this->amount = isset($data->Amount) ? $data->Amount : null;
+        $this->receivedDate = isset($data->ReceivedDate) ? $data->ReceivedDate : null;
+        $this->capturedAmount = isset($data->CapturedAmount) ? $data->CapturedAmount : null;
+        $this->capturedDate = isset($data->CapturedDate) ? $data->CapturedDate : null;
+        $this->voidedAmount = isset($data->VoidedAmount) ? $data->VoidedAmount : null;
+        $this->voidedDate = isset($data->VoidedDate) ? $data->VoidedDate : null;
+        $this->currency = isset($data->Currency) ? $data->Currency : null;
+        $this->country = isset($data->Country) ? $data->Country : null;
+        $this->returnCode = isset($data->ReturnCode) ? $data->ReturnCode : null;
+        $this->returnMessage = isset($data->ReturnMessage) ? $data->ReturnMessage : null;
+        $this->status = isset($data->Status) ? $data->Status : null;
 
         $this->links = isset($data->Links) ? $data->Links : [];
 
-        $this->assignor       = isset($data->Assignor) ? $data->Assignor : null;
-        $this->demonstrative  = isset($data->Demonstrative) ? $data->Demonstrative : null;
+        $this->assignor = isset($data->Assignor) ? $data->Assignor : null;
+        $this->demonstrative = isset($data->Demonstrative) ? $data->Demonstrative : null;
         $this->identification = isset($data->Identification) ? $data->Identification : null;
-        $this->instructions   = isset($data->Instructions) ? $data->Instructions : null;
+        $this->instructions = isset($data->Instructions) ? $data->Instructions : null;
     }
 
     /**
@@ -1139,18 +1142,18 @@ class Payment implements \JsonSerializable
     }
 
     /**
-    * @return mixed
-    */
+     * @return mixed
+     */
     public function getFraudAnalysis()
     {
         return $this->fraudAnalysis;
     }
 
     /**
-    * @param $fraudAnalysis
-    *
-    * @return $this
-    */
+     * @param $fraudAnalysis
+     *
+     * @return $this
+     */
     public function setFraudAnalysis($fraudAnalysis)
     {
         $this->fraudAnalysis = $fraudAnalysis;

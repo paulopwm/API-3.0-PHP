@@ -2,12 +2,14 @@
 
 namespace Cielo\API30\Ecommerce;
 
+use stdClass;
+
 /**
  * Class RecurrentPayment
  *
  * @package Cielo\API30\Ecommerce
  */
-class RecurrentPayment implements \JsonSerializable
+class RecurrentPayment implements CieloSerializable
 {
 
     const INTERVAL_MONTHLY = 'Monthly';
@@ -57,7 +59,7 @@ class RecurrentPayment implements \JsonSerializable
      */
     public static function fromJson($json)
     {
-        $object = json_decode($json);
+        $object = json_decode($json, false);
 
         $recurrentPayment = new RecurrentPayment();
 
@@ -69,32 +71,32 @@ class RecurrentPayment implements \JsonSerializable
     }
 
     /**
-     * @param \stdClass $data
+     * @param stdClass $data
      */
-    public function populate(\stdClass $data)
+    public function populate(stdClass $data)
     {
-        $this->authorizeNow       = isset($data->AuthorizeNow) ? !!$data->AuthorizeNow : false;
+        $this->authorizeNow = isset($data->AuthorizeNow) ? !!$data->AuthorizeNow : false;
         $this->recurrentPaymentId = isset($data->RecurrentPaymentId) ? $data->RecurrentPaymentId : null;
-        $this->nextRecurrency     = isset($data->NextRecurrency) ? $data->NextRecurrency : null;
-        $this->startDate          = isset($data->StartDate) ? $data->StartDate : null;
-        $this->endDate            = isset($data->EndDate) ? $data->EndDate : null;
-        $this->interval           = isset($data->Interval) ? $data->Interval : null;
+        $this->nextRecurrency = isset($data->NextRecurrency) ? $data->NextRecurrency : null;
+        $this->startDate = isset($data->StartDate) ? $data->StartDate : null;
+        $this->endDate = isset($data->EndDate) ? $data->EndDate : null;
+        $this->interval = isset($data->Interval) ? $data->Interval : null;
 
-        $this->amount                = isset($data->Amount) ? $data->Amount : null;
-        $this->country               = isset($data->Country) ? $data->Country : null;
-        $this->createDate            = isset($data->CreateDate) ? $data->CreateDate : null;
-        $this->currency              = isset($data->Currency) ? $data->Currency : null;
-        $this->currentRecurrencyTry  = isset($data->CurrentRecurrencyTry) ? $data->CurrentRecurrencyTry : null;
-        $this->provider              = isset($data->Provider) ? $data->Provider : null;
-        $this->recurrencyDay         = isset($data->RecurrencyDay) ? $data->RecurrencyDay : null;
+        $this->amount = isset($data->Amount) ? $data->Amount : null;
+        $this->country = isset($data->Country) ? $data->Country : null;
+        $this->createDate = isset($data->CreateDate) ? $data->CreateDate : null;
+        $this->currency = isset($data->Currency) ? $data->Currency : null;
+        $this->currentRecurrencyTry = isset($data->CurrentRecurrencyTry) ? $data->CurrentRecurrencyTry : null;
+        $this->provider = isset($data->Provider) ? $data->Provider : null;
+        $this->recurrencyDay = isset($data->RecurrencyDay) ? $data->RecurrencyDay : null;
         $this->successfulRecurrences = isset($data->SuccessfulRecurrences) ? $data->SuccessfulRecurrences : null;
 
-        $this->links                 = isset($data->Links) ? $data->Links : [];
+        $this->links = isset($data->Links) ? $data->Links : [];
         $this->recurrentTransactions = isset($data->RecurrentTransactions) ? $data->RecurrentTransactions : [];
 
-        $this->reasonCode    = isset($data->ReasonCode) ? $data->ReasonCode : null;
+        $this->reasonCode = isset($data->ReasonCode) ? $data->ReasonCode : null;
         $this->reasonMessage = isset($data->ReasonMessage) ? $data->ReasonMessage : null;
-        $this->status        = isset($data->Status) ? $data->Status : null;
+        $this->status = isset($data->Status) ? $data->Status : null;
     }
 
     /**
@@ -288,7 +290,7 @@ class RecurrentPayment implements \JsonSerializable
 
         return $this;
     }
-    
+
     /**
      * @return mixed
      */

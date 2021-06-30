@@ -2,14 +2,14 @@
 
 namespace Cielo\API30\Ecommerce;
 
-use Cielo\API30\Ecommerce\CieloSerializable;
+use stdClass;
 
 /**
  * Class MerchantDefinedFields
  *
  * @package Cielo\API30\Ecommerce
  */
-class MerchantDefinedFields implements \JsonSerializable, CieloSerializable
+class MerchantDefinedFields implements CieloSerializable
 {
     /** @var string $id */
     private $id;
@@ -18,34 +18,25 @@ class MerchantDefinedFields implements \JsonSerializable, CieloSerializable
     private $value;
 
     /**
-     * MerchantDefinedFields constructor.
-     *
-     * @param null
-    */
-    public function __construct()
-    {
-    }
-
-    /**
      * @return array
-    */
+     */
     public function jsonSerialize()
     {
         return get_object_vars($this);
     }
 
     /**
-     * @param \stdClass $data
-    */
-    public function populate(\stdClass $data)
+     * @param stdClass $data
+     */
+    public function populate(stdClass $data)
     {
-        $this->id     = isset($data->Id) ? $data->Id : null;
-        $this->value  = isset($data->Value) ? $data->Value : null;
+        $this->id = isset($data->Id) ? $data->Id : null;
+        $this->value = isset($data->Value) ? $data->Value : null;
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getId()
     {
         return $this->id;
@@ -55,7 +46,7 @@ class MerchantDefinedFields implements \JsonSerializable, CieloSerializable
      * @param $id
      *
      * @return $this
-    */
+     */
     public function setId($id)
     {
         $this->id = $id;
@@ -64,8 +55,8 @@ class MerchantDefinedFields implements \JsonSerializable, CieloSerializable
     }
 
     /**
-     * @return mixed
-    */
+     * @return string
+     */
     public function getValue()
     {
         return $this->value;
@@ -75,7 +66,7 @@ class MerchantDefinedFields implements \JsonSerializable, CieloSerializable
      * @param $value
      *
      * @return $this
-    */
+     */
     public function setValue($value)
     {
         $this->value = $value;
